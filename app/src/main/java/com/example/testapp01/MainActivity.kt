@@ -26,11 +26,18 @@ class MainActivity : AppCompatActivity() {
             .permitAll()
             .build())
 
-        getBooks()
-
-//        binding.button.setOnClickListener {
+//        binding.addButton.setOnClickListener {
 //
 //        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        getBooks()
+
+        val listView = binding.booksList
+        listView.adapter = books?.let { BooksAdapter(this, it.toList()) }
     }
 
     private fun getBooks() {

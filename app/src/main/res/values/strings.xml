@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">TestApp01</string>
     <string name="add_button_text">Add</string>
+    <string name="back_button_text">Back</string>
 </resources>

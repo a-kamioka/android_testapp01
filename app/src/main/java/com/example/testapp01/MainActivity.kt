@@ -1,9 +1,13 @@
 package com.example.testapp01
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.StrictMode
 import android.util.Log
+import android.view.View
+import android.widget.AdapterView
+import android.widget.Toast
 import com.example.testapp01.Repositories.BooksRepository
 import com.example.testapp01.Models.Books
 
@@ -38,6 +42,7 @@ class MainActivity : AppCompatActivity() {
 
         val listView = binding.booksList
         listView.adapter = books?.let { BooksAdapter(this, it.toList()) }
+        listView.onItemClickListener = ListItemClick()
     }
 
     private fun getBooks() {
@@ -47,6 +52,19 @@ class MainActivity : AppCompatActivity() {
         } catch (e: Exception) {
             Log.d("TestApp01", "debug $e")
             throw Exception(e)
+        }
+    }
+
+    private inner class ListItemClick: AdapterView.OnItemClickListener {
+        override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+            val item = parent?.getItemAtPosition(position) as Books
+
+            val intentBookView = Intent(this@MainActivity, BookViewActivity::class.java)
+            intentBookView.putExtra("bookId", item.id)
+            intentBookView.putExtra("bookTitle", item.title)
+            intentBookView.putExtra("bookCategory", item.categoryId)
+            intentBookView.putExtra("bookComment", item.comment)
+            startActivity(intentBookView)
         }
     }
 }

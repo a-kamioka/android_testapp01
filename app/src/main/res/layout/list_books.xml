@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:gravity="center_vertical">
+    android:gravity="center_vertical"
+    android:descendantFocusability="blocksDescendants">
 
     <LinearLayout
         android:layout_width="0dp"
@@ -23,10 +24,13 @@
             android:text="category"/>
     </LinearLayout>
 
-    <Button
-        android:id="@+id/bookButton"
-        android:layout_width="wrap_content"
+    <ImageButton
+        android:id="@+id/bookEditButton"
+        android:layout_width="60dp"
         android:layout_height="wrap_content"
-        android:text="button"/>
+        android:src="@drawable/baseline_edit_note_24"
+        android:contentDescription="bookEditButton"
+        style="?android:attr/borderlessButtonStyle" />
+<!--        android:focusable="false" />-->
 
 </LinearLayout>

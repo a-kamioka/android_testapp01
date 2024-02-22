@@ -9,7 +9,7 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.Toast
 import com.example.testapp01.Repositories.BooksRepository
-import com.example.testapp01.Models.Books
+import com.example.testapp01.Models.Book
 
 import com.example.testapp01.databinding.ActivityMainBinding
 
@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
 
     private val _booksService = BooksRepository.service
 
-    var books: MutableList<Books>? = mutableListOf()
+    var books: MutableList<Book>? = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,12 +57,12 @@ class MainActivity : AppCompatActivity() {
 
     private inner class ListItemClick: AdapterView.OnItemClickListener {
         override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-            val item = parent?.getItemAtPosition(position) as Books
+            val item = parent?.getItemAtPosition(position) as Book
 
             val intentBookView = Intent(this@MainActivity, BookViewActivity::class.java)
             intentBookView.putExtra("bookId", item.id)
             intentBookView.putExtra("bookTitle", item.title)
-            intentBookView.putExtra("bookCategory", item.categoryId)
+            intentBookView.putExtra("bookCategory", item.category)
             intentBookView.putExtra("bookComment", item.comment)
             startActivity(intentBookView)
         }

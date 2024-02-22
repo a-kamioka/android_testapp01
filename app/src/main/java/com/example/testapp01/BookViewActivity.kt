@@ -16,11 +16,11 @@ class BookViewActivity : AppCompatActivity() {
 
         val bookId = intent.getStringExtra("bookId")
         val bookTitle = intent.getStringExtra("bookTitle")
-//        val bookCategory = intent.getStringExtra("bookCategory")
+        val bookCategory = intent.getStringExtra("bookCategory")
         val bookComment = intent.getStringExtra("bookComment")
 
         binding.bookTitle.text = bookTitle.toString()
-//        binding.bookCategory.text = bookCategory.toString()
+        binding.bookCategory.text = bookCategory.toString()
         binding.bookComment.text = bookComment.toString()
 
         binding.backButton.setOnClickListener {

@@ -1,14 +1,17 @@
 package com.example.testapp01
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
-import com.example.testapp01.Models.Books
+import androidx.core.content.ContextCompat.startActivity
+import com.example.testapp01.Models.Book
+import com.example.testapp01.databinding.ActivityBookEditBinding
 import com.example.testapp01.databinding.ListBooksBinding
 
-class BooksAdapter(val context: Context, val books: List<Books>): BaseAdapter() {
+class BooksAdapter(val context: Context, val books: List<Book>): BaseAdapter() {
 
     private val inflater = LayoutInflater.from(context)
 
@@ -28,6 +31,12 @@ class BooksAdapter(val context: Context, val books: List<Books>): BaseAdapter() 
         val binding: ListBooksBinding
         binding = ListBooksBinding.inflate(inflater, parent, false)
         binding.bookTitle.text = books[position].title
+        binding.bookCategory.text = books[position].category
+        binding.bookEditButton.setOnClickListener {
+            val intent = Intent(context, BookEditActivity::class.java)
+            intent.putExtra("bookId", books[position].id)
+            context.startActivity(intent)
+        }
         return binding.root
     }
 }

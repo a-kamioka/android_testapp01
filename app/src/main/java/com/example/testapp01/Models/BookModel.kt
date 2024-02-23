@@ -5,10 +5,14 @@ data class Book(
     val title: String,
     val categoryId: Int,
     val comment: String?,
-    val category: String?
+    val category: String? = null
 )
 
 data class Category(
     val id: Int,
     val name: String
-)
+) {
+    override fun toString(): String {
+        return name
+    }
+}
